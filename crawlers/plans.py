@@ -340,8 +340,6 @@ class PlanCrawler(BaseCrawler):
                     if show_detail:
                         print(f"      ✓ {province_name}: 获取数据")
 
-                    self.polite_sleep(0.2, 0.6)
-
                 year_elapsed = time.perf_counter() - year_start_time
                 if year_count > 0:
                     print(
@@ -375,9 +373,6 @@ class PlanCrawler(BaseCrawler):
 
             avg_per_request = school_elapsed / school_request_count if school_request_count else 0
             print(f"   📊 单请求平均耗时: {avg_per_request:.2f} 秒")
-
-            if idx < len(school_ids):
-                self.polite_sleep(1.0, 2.0)
 
         print(f"\n{'='*60}")
         print("✅ 招生计划爬取完成！")
