@@ -1,24 +1,45 @@
-name: Crawl Plans
+name: 爬取招生计划数据
+
+run-name: >-
+  plans / ${{ inputs.current_year || inputs.years || 'schedule' }}
+  / ${{ inputs.current_shard || 'upper' }}
+  / ${{ inputs.mode || 'full' }}
 
 on:
   workflow_dispatch:
     inputs:
-      years:
-        description: "年份，支持单年(2025)、范围(2025-2020)、列表(2025,2024,2023)"
+      mode:
+        description: '爬取模式'
         required: true
-        default: "2025"
-      sample_schools:
-        description: "仅爬取前 N 所学校，0 表示全部"
+        type: choice
+        options:
+          - test
+          - sample
+          - full
+        default: test
+      years:
+        description: '年份范围（如：2025,2024,2023 或 2018-2025）'
         required: false
-        default: "0"
-      max_workers:
-        description: "并发线程数"
+        type: string
+        default: ''
+      current_year:
+        description: '内部链式调用使用，手动执行时留空'
         required: false
-        default: "6"
-      resume_run:
-        description: "是否为自动续跑"
+        type: string
+        default: ''
+      current_shard:
+        description: '内部链式调用使用，upper 或 lower，手动执行时留空'
         required: false
-        default: "false"
+        type: string
+        default: ''
+      chain_years:
+        description: '内部链式调用使用，手动执行时留空'
+        required: false
+        type: string
+        default: ''
+
+  schedule:
+    - cron: '0 2 1 * *'
 
 permissions:
   contents: write
@@ -31,172 +52,304 @@ concurrency:
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 330
+    timeout-minutes: 300
     env:
-      PLAN_YEARS: ${{ inputs.years }}
-      SAMPLE_SCHOOLS: ${{ inputs.sample_schools }}
-      PLAN_MAX_WORKERS: ${{ inputs.max_workers }}
-      PLAN_RESUME: "1"
-      PLAN_TIME_LIMIT_SECONDS: "17100"
-      PLAN_CHUNK_RECORD_LIMIT: "100000"
-      GH_TOKEN: ${{ github.token }}
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: 检出代码
+        uses: actions/checkout@v5
         with:
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
-          cache: "pip"
+          python-version: '3.10'
+          cache: 'pip'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Ensure release exists
-        shell: bash
+      - name: 安装依赖
         run: |
-          gh release view plans-data >/dev/null 2>&1 || \
-          gh release create plans-data --title "plans-data" --notes "Chunked plans crawler output"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Restore progress from release
-        shell: bash
+      - name: 创建数据目录
         run: |
-          mkdir -p data/chunks release-download
+          mkdir -p data/plans
+          mkdir -p data/plans_progress
+          mkdir -p data/plans_progress/completed
 
-          gh release download plans-data \
-            -p "plans_progress.json" \
-            -p "manifest.json" \
-            -D release-download || true
-
-          [ -f release-download/plans_progress.json ] && cp release-download/plans_progress.json data/plans_progress.json || true
-          [ -f release-download/manifest.json ] && cp release-download/manifest.json data/manifest.json || true
-
-      - name: Run crawler
-        shell: bash
-        run: |
-          mkdir -p data/chunks
-          python -m crawlers.plans "${PLAN_YEARS}" | tee crawl.log
-
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          progress_path = Path("data/plans_progress.json")
-          meta = {}
-
-          if progress_path.exists():
-              progress = json.loads(progress_path.read_text(encoding="utf-8"))
-              meta = progress.get("meta", {})
-
-          Path("resume.env").write_text(
-              "\n".join([
-                  f"RESUME_REQUIRED={str(meta.get('resume_required', False)).lower()}",
-                  f"RESUME_YEARS={meta.get('years_arg', '')}",
-                  f"REMAINING_TASKS={meta.get('remaining_tasks', 0)}",
-              ]) + "\n",
-              encoding="utf-8"
-          )
-          PY
-
-          cat resume.env >> "$GITHUB_ENV"
-
-      - name: Upload files to release via curl
-        if: always()
+      - name: 检查学校数据源
         shell: bash
         run: |
           set -euo pipefail
 
-          TAG="plans-data"
-          REPO="${GITHUB_REPOSITORY}"
-
-          release_id="$(gh api "repos/${REPO}/releases/tags/${TAG}" --jq '.id')"
-          upload_url="$(gh api "repos/${REPO}/releases/tags/${TAG}" --jq '.upload_url' | sed 's/{?name,label}//')"
-
-          delete_asset_if_exists() {
-            local asset_name="$1"
-            local asset_id
-            asset_id="$(gh api "repos/${REPO}/releases/${release_id}/assets" --paginate --jq ".[] | select(.name == \"${asset_name}\") | .id" | head -n 1 || true)"
-            if [ -n "${asset_id}" ]; then
-              gh api -X DELETE "repos/${REPO}/releases/assets/${asset_id}"
-            fi
-          }
-
-          upload_file() {
-            local file_path="$1"
-            local asset_name
-            local content_type
-            local attempt
-
-            [ -f "$file_path" ] || return 0
-
-            asset_name="$(basename "$file_path")"
-
-            case "$asset_name" in
-              *.jsonl.gz) content_type="application/gzip" ;;
-              *.json) content_type="application/json" ;;
-              *) content_type="application/octet-stream" ;;
-            esac
-
-            delete_asset_if_exists "$asset_name"
-
-            for attempt in 1 2 3; do
-              echo "Uploading ${asset_name}, attempt ${attempt}..."
-              if curl --fail --silent --show-error --http1.1 \
-                -X POST \
-                -H "Authorization: Bearer ${GH_TOKEN}" \
-                -H "Content-Type: ${content_type}" \
-                --data-binary @"${file_path}" \
-                "${upload_url}?name=${asset_name}"; then
-                echo "Uploaded ${asset_name}"
-                return 0
-              fi
-
-              echo "Upload failed for ${asset_name}, retrying..."
-              sleep $((attempt * 10))
-            done
-
-            echo "Upload failed after 3 attempts: ${asset_name}"
+          if [ -d data/schools ]; then
+            FIRST_JSON="$(find data/schools -type f -name '*.json' -print -quit || true)"
+            test -n "$FIRST_JSON" || (echo "data/schools 下没有学校 JSON 文件" && exit 1)
+            echo "检测到学校目录文件: $FIRST_JSON"
+          elif [ -f data/schools.json ]; then
+            echo "检测到学校聚合文件: data/schools.json"
+          else
+            echo "缺少 data/schools 或 data/schools.json，请先更新学校数据"
             exit 1
-          }
-
-          if compgen -G "data/chunks/*.jsonl.gz" > /dev/null; then
-            for f in data/chunks/*.jsonl.gz; do
-              upload_file "$f"
-            done
           fi
 
-          upload_file "data/plans_progress.json"
-          upload_file "data/manifest.json"
-
-      - name: Commit only metadata
-        if: always()
+      - name: 解析当前任务
+        id: task
         shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_MODE: ${{ github.event.inputs.mode }}
+          INPUT_YEARS: ${{ github.event.inputs.years }}
+          INPUT_CURRENT_YEAR: ${{ github.event.inputs.current_year }}
+          INPUT_CURRENT_SHARD: ${{ github.event.inputs.current_shard }}
+          INPUT_CHAIN_YEARS: ${{ github.event.inputs.chain_years }}
         run: |
+          set -euo pipefail
+
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            MODE="full"
+            RAW_YEARS="${INPUT_CHAIN_YEARS:-${INPUT_YEARS:-}}"
+          else
+            MODE="${INPUT_MODE:-test}"
+            RAW_YEARS="${INPUT_CHAIN_YEARS:-${INPUT_YEARS:-}}"
+          fi
+
+          mapfile -t YEAR_LIST < <(bash scripts/resolve_years.sh "$RAW_YEARS" "$MODE")
+
+          if [ "${#YEAR_LIST[@]}" -eq 0 ]; then
+            echo "没有可执行年份"
+            exit 1
+          fi
+
+          if [ -n "${INPUT_CURRENT_YEAR:-}" ]; then
+            CURRENT_YEAR="${INPUT_CURRENT_YEAR}"
+          else
+            CURRENT_YEAR="${YEAR_LIST[0]}"
+          fi
+
+          if [ -n "${INPUT_CURRENT_SHARD:-}" ]; then
+            CURRENT_SHARD="${INPUT_CURRENT_SHARD}"
+          else
+            CURRENT_SHARD="upper"
+          fi
+
+          case "$CURRENT_SHARD" in
+            upper|lower) ;;
+            *)
+              echo "非法分片: $CURRENT_SHARD"
+              exit 1
+              ;;
+          esac
+
+          FOUND_YEAR=false
+          for year in "${YEAR_LIST[@]}"; do
+            if [ "$year" = "$CURRENT_YEAR" ]; then
+              FOUND_YEAR=true
+              break
+            fi
+          done
+
+          if [ "$FOUND_YEAR" != "true" ]; then
+            echo "当前年份 $CURRENT_YEAR 不在年份列表中: ${YEAR_LIST[*]}"
+            exit 1
+          fi
+
+          PROGRESS_FILE="data/plans_progress/${CURRENT_YEAR}-${CURRENT_SHARD}.json"
+
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "chain_years=$RAW_YEARS" >> "$GITHUB_OUTPUT"
+          echo "current_year=$CURRENT_YEAR" >> "$GITHUB_OUTPUT"
+          echo "current_shard=$CURRENT_SHARD" >> "$GITHUB_OUTPUT"
+          echo "progress_file=$PROGRESS_FILE" >> "$GITHUB_OUTPUT"
+
+          {
+            echo 'year_list<<EOF'
+            printf '%s\n' "${YEAR_LIST[@]}"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+          echo "当前任务: year=$CURRENT_YEAR, shard=$CURRENT_SHARD, mode=$MODE"
+          echo "年份序列: ${YEAR_LIST[*]}"
+
+      - name: 执行当前年份分片
+        id: crawl_run
+        shell: bash
+        env:
+          MODE: ${{ steps.task.outputs.mode }}
+          CURRENT_YEAR: ${{ steps.task.outputs.current_year }}
+          CURRENT_SHARD: ${{ steps.task.outputs.current_shard }}
+          PROGRESS_FILE: ${{ steps.task.outputs.progress_file }}
+        run: |
+          set -euo pipefail
+
+          case "$MODE" in
+            test)
+              SAMPLE_SCHOOLS_VALUE=3
+              MAX_SCHOOLS_PER_RUN=1
+              ;;
+            sample)
+              SAMPLE_SCHOOLS_VALUE=10
+              MAX_SCHOOLS_PER_RUN=3
+              ;;
+            full)
+              SAMPLE_SCHOOLS_VALUE=99999
+              MAX_SCHOOLS_PER_RUN=20
+              ;;
+            *)
+              echo "未知模式: $MODE"
+              exit 1
+              ;;
+          esac
+
+          export DB_ENABLED=false
+          export CRAWL_MODE="$MODE"
+          export SAMPLE_SCHOOLS="$SAMPLE_SCHOOLS_VALUE"
+          export PLAN_YEARS="$CURRENT_YEAR"
+          export PLAN_SCHOOL_SHARD="$CURRENT_SHARD"
+          export PLAN_PROGRESS_FILE="$PROGRESS_FILE"
+          export PLAN_PROGRESS_DIR="data/plans_progress"
+          export PLAN_COMPLETED_DIR="data/plans_progress/completed"
+          export PLAN_DATA_DIR="data/plans"
+          export SCHOOL_DATA_DIR="data/schools"
+          export SCHOOL_SOURCE_FILE="data/schools.json"
+          export PLAN_SKIP_EXISTING=true
+          export PLAN_DEBUG=false
+          export PLAN_MAX_SCHOOLS_PER_RUN="$MAX_SCHOOLS_PER_RUN"
+          export PLAN_PROVINCE_WORKERS=4
+          export PLAN_SCHOOL_SLEEP_MIN=0.3
+          export PLAN_SCHOOL_SLEEP_MAX=0.8
+
+          echo "开始爬取: year=$CURRENT_YEAR, shard=$CURRENT_SHARD, mode=$MODE"
+          python -m crawlers.plans "$CURRENT_YEAR" "$MODE"
+
+          if [ -f "$PROGRESS_FILE" ]; then
+            echo "task_status=partial" >> "$GITHUB_OUTPUT"
+            echo "当前分片未完成，将继续派发同一分片"
+          else
+            echo "task_status=done" >> "$GITHUB_OUTPUT"
+            echo "当前分片已完成"
+          fi
+
+      - name: 提交数据与进度
+        id: commit
+        shell: bash
+        env:
+          TASK_STATUS: ${{ steps.crawl_run.outputs.task_status }}
+          CURRENT_YEAR: ${{ steps.task.outputs.current_year }}
+          CURRENT_SHARD: ${{ steps.task.outputs.current_shard }}
+          MODE: ${{ steps.task.outputs.mode }}
+        run: |
+          set -euo pipefail
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/plans_progress.json data/manifest.json || true
+          git add -A data/plans data/plans_progress
 
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: update plans metadata (${PLAN_YEARS}) [skip ci]"
-            git pull --rebase origin "${GITHUB_REF_NAME}"
-            git push origin HEAD:"${GITHUB_REF_NAME}"
-          else
-            echo "No metadata changes to commit"
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "本轮没有文件变化"
+            exit 0
           fi
 
-      - name: Trigger resume workflow
-        if: always() && env.RESUME_REQUIRED == 'true'
+          if [ "$TASK_STATUS" = "partial" ]; then
+            COMMIT_MSG="⏸️ 保存招生计划进度 [$CURRENT_YEAR] [$CURRENT_SHARD] [$MODE] #${{ github.run_number }}"
+          else
+            COMMIT_MSG="📊 完成招生计划分片 [$CURRENT_YEAR] [$CURRENT_SHARD] [$MODE] #${{ github.run_number }}"
+          fi
+
+          git commit -m "$COMMIT_MSG"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+
+      - name: 计算下一任务
+        id: next
         shell: bash
+        env:
+          MODE: ${{ steps.task.outputs.mode }}
+          RAW_YEARS: ${{ steps.task.outputs.chain_years }}
+          CURRENT_YEAR: ${{ steps.task.outputs.current_year }}
+          CURRENT_SHARD: ${{ steps.task.outputs.current_shard }}
+          TASK_STATUS: ${{ steps.crawl_run.outputs.task_status }}
         run: |
-          echo "Need resume, remaining tasks: ${REMAINING_TASKS}"
-          gh workflow run plans.yml \
-            --ref "${GITHUB_REF_NAME}" \
-            -f years="${RESUME_YEARS}" \
-            -f sample_schools="${{ inputs.sample_schools }}" \
-            -f max_workers="${{ inputs.max_workers }}" \
-            -f resume_run="true"
+          set -euo pipefail
+
+          mapfile -t YEAR_LIST < <(bash scripts/resolve_years.sh "$RAW_YEARS" "$MODE")
+
+          NEXT_YEAR=""
+          NEXT_SHARD=""
+
+          if [ "$TASK_STATUS" = "partial" ]; then
+            NEXT_YEAR="$CURRENT_YEAR"
+            NEXT_SHARD="$CURRENT_SHARD"
+          else
+            if [ "$CURRENT_SHARD" = "upper" ]; then
+              NEXT_YEAR="$CURRENT_YEAR"
+              NEXT_SHARD="lower"
+            else
+              NEXT_INDEX=""
+              for i in "${!YEAR_LIST[@]}"; do
+                if [ "${YEAR_LIST[$i]}" = "$CURRENT_YEAR" ]; then
+                  NEXT_INDEX=$((i + 1))
+                  break
+                fi
+              done
+
+              if [ -n "${NEXT_INDEX:-}" ] && [ "$NEXT_INDEX" -lt "${#YEAR_LIST[@]}" ]; then
+                NEXT_YEAR="${YEAR_LIST[$NEXT_INDEX]}"
+                NEXT_SHARD="upper"
+              fi
+            fi
+          fi
+
+          if [ -n "$NEXT_YEAR" ] && [ -n "$NEXT_SHARD" ]; then
+            echo "has_next=true" >> "$GITHUB_OUTPUT"
+            echo "next_year=$NEXT_YEAR" >> "$GITHUB_OUTPUT"
+            echo "next_shard=$NEXT_SHARD" >> "$GITHUB_OUTPUT"
+            echo "下一任务: year=$NEXT_YEAR, shard=$NEXT_SHARD"
+          else
+            echo "has_next=false" >> "$GITHUB_OUTPUT"
+            echo "全部年份与分片已完成"
+          fi
+
+      - name: 派发下一任务
+        if: steps.next.outputs.has_next == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MODE: ${{ steps.task.outputs.mode }}
+          CHAIN_YEARS: ${{ steps.task.outputs.chain_years }}
+          NEXT_YEAR: ${{ steps.next.outputs.next_year }}
+          NEXT_SHARD: ${{ steps.next.outputs.next_shard }}
+        run: |
+          set -euo pipefail
+
+          PAYLOAD="$(python - <<'PY'
+import json
+import os
+
+payload = {
+    "ref": os.environ["GITHUB_REF_NAME"],
+    "inputs": {
+        "mode": os.environ["MODE"],
+        "years": os.environ["CHAIN_YEARS"],
+        "chain_years": os.environ["CHAIN_YEARS"],
+        "current_year": os.environ["NEXT_YEAR"],
+        "current_shard": os.environ["NEXT_SHARD"],
+    },
+}
+print(json.dumps(payload, ensure_ascii=False))
+PY
+)"
+          echo "Dispatch payload: $PAYLOAD"
+
+          curl -fsSL \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            
