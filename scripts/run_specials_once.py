@@ -8,17 +8,17 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from crawlers.plans import PlanCrawler
+from crawlers.specials import SpecialCrawler
 
 
 def write_output(path: str, key: str, value):
     if not path:
         return
     with open(path, 'a', encoding='utf-8') as f:
-        f.write(f'{key}={value}\n')
+        f.write(f'{key}={value}')
 
 
-def load_school_ids():
+def load_schools():
     schools_file = PROJECT_ROOT / os.getenv('SCHOOL_DATA_FILE', 'data/schools.json')
     if not schools_file.exists():
         raise FileNotFoundError(f'未找到学校文件: {schools_file}')
@@ -35,54 +35,39 @@ def load_school_ids():
     else:
         schools = []
 
-    school_ids = []
+    items = []
     for item in schools:
-        if isinstance(item, dict) and item.get('school_id'):
-            school_ids.append(str(item['school_id']))
+        if not isinstance(item, dict) or not item.get('school_id'):
+            continue
+        items.append({
+            'school_id': str(item.get('school_id')),
+            'school_name': item.get('name') or item.get('school_name') or item.get('school_name_cn') or '',
+        })
 
     def sort_key(x):
-        return (0, int(x)) if x.isdigit() else (1, x)
+        sid = x['school_id']
+        return (0, int(sid)) if sid.isdigit() else (1, sid)
 
-    school_ids = sorted(dict.fromkeys(school_ids), key=sort_key)
-
-    sample_count = int(os.getenv('SAMPLE_SCHOOLS', '0') or 0)
-    if sample_count > 0:
-        school_ids = school_ids[:sample_count]
-
-    return school_ids
+    return sorted({item['school_id']: item for item in items}.values(), key=sort_key)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--year', required=True)
-    parser.add_argument('--province-id', required=True)
-    parser.add_argument('--province-index', required=True)
-    parser.add_argument('--mode', required=True)
     parser.add_argument('--github-output', default='')
     args = parser.parse_args()
 
-    school_ids = load_school_ids()
+    schools = load_schools()
 
-    if not school_ids:
-        write_output(args.github_output, 'run_year', args.year)
-        write_output(args.github_output, 'run_province_id', args.province_id)
-        write_output(args.github_output, 'run_province_index', args.province_index)
+    if not schools:
         write_output(args.github_output, 'run_status', 'skipped')
         write_output(args.github_output, 'saved_documents', 0)
         write_output(args.github_output, 'completed_schools', 0)
-        print({'year': args.year, 'province_id': args.province_id, 'status': 'skipped'})
+        print({'status': 'skipped'})
         return
 
-    crawler = PlanCrawler()
-    result = crawler.crawl(
-        school_ids=school_ids,
-        years=args.year,
-        province_ids=[args.province_id],
-    )
+    crawler = SpecialCrawler()
+    result = crawler.crawl(schools=schools)
 
-    write_output(args.github_output, 'run_year', result.get('year', args.year))
-    write_output(args.github_output, 'run_province_id', args.province_id)
-    write_output(args.github_output, 'run_province_index', args.province_index)
     write_output(args.github_output, 'run_status', result.get('status', 'skipped'))
     write_output(args.github_output, 'saved_documents', result.get('saved_documents', 0))
     write_output(args.github_output, 'completed_schools', result.get('completed_schools', 0))
