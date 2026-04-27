@@ -1,0 +1,172 @@
+{
+  "update_time": "2026-04-27 16:49:29",
+  "school_id": "3811",
+  "school_name": "宁波东方理工大学",
+  "source_url": "https://static-data.gaokao.cn/www/2.0/school/3811/pc_special.json?a=www.gaokao.cn",
+  "time": "2026-04-22 17:49:59",
+  "md5": "0c130e6d9c98bb6a0a5c48cc1bb72b82",
+  "group_keys": [
+    "1"
+  ],
+  "group_count": 1,
+  "nonempty_group_count": 1,
+  "data_count": 1,
+  "special_detail_keys": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "special_group_count": 1,
+  "nation_feature_count": 0,
+  "educational_strength": {
+    "num_doctor": "0",
+    "num_doctor2": "0",
+    "num_master": "0",
+    "num_master2": "0",
+    "num_subject": "0",
+    "gbh_num": "0",
+    "a_subject": "0",
+    "dualclass": 0,
+    "nation_feature": 0
+  },
+  "data": {
+    "1": [
+      {
+        "id": "2170172",
+        "school_id": "3811",
+        "special_id": "172",
+        "nation_feature": "2",
+        "province_feature": "2",
+        "is_important": "2",
+        "limit_year": "四年",
+        "year": "2022",
+        "level3_weight": "0",
+        "nation_first_class": "2",
+        "xueke_rank": "0",
+        "xueke_rank_score": "",
+        "ruanke_rank": "9999",
+        "ruanke_level": "",
+        "is_video": 2,
+        "special_name": "计算机科学与技术（大类招生）",
+        "special_type": "1",
+        "type_name": "本科(普通)",
+        "level3_name": "计算机类",
+        "level3_code": "71",
+        "level2_name": "工学",
+        "level2_id": "10",
+        "level2_code": "08",
+        "code": "0809"
+      }
+    ],
+    "2": "",
+    "special_detail": {
+      "1": [
+        {
+          "id": "2170172",
+          "school_id": "3811",
+          "special_id": "172",
+          "nation_feature": "2",
+          "province_feature": "2",
+          "is_important": "2",
+          "limit_year": "四年",
+          "year": "2022",
+          "level3_weight": "0",
+          "nation_first_class": "2",
+          "xueke_rank": "0",
+          "xueke_rank_score": "",
+          "ruanke_rank": "9999",
+          "ruanke_level": "",
+          "is_video": 2,
+          "special_name": "计算机科学与技术（大类招生）",
+          "special_type": "1",
+          "type_name": "本科(普通)",
+          "level3_name": "计算机类",
+          "level3_code": "71",
+          "level2_name": "工学",
+          "level2_id": "10",
+          "level2_code": "08",
+          "code": "0809"
+        }
+      ],
+      "2": [],
+      "3": "",
+      "4": []
+    },
+    "special": [
+      {
+        "level3_weight": "0",
+        "code": "0809",
+        "name": "计算机类(本)",
+        "special": [
+          {
+            "id": "2170172",
+            "school_id": "3811",
+            "special_id": "172",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "四年",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "计算机科学与技术（大类招生）",
+            "special_type": "1",
+            "type_name": "本科(普通)",
+            "level3_name": "计算机类",
+            "level3_code": "71",
+            "level2_name": "工学",
+            "level2_id": "10",
+            "level2_code": "08",
+            "code": "0809"
+          }
+        ]
+      }
+    ],
+    "nation_feature": [],
+    "educational_strength": {
+      "num_doctor": "0",
+      "num_doctor2": "0",
+      "num_master": "0",
+      "num_master2": "0",
+      "num_subject": "0",
+      "gbh_num": "0",
+      "a_subject": "0",
+      "dualclass": 0,
+      "nation_feature": 0
+    }
+  },
+  "items": [
+    {
+      "id": "2170172",
+      "school_id": "3811",
+      "special_id": "172",
+      "nation_feature": "2",
+      "province_feature": "2",
+      "is_important": "2",
+      "limit_year": "四年",
+      "year": "2022",
+      "level3_weight": "0",
+      "nation_first_class": "2",
+      "xueke_rank": "0",
+      "xueke_rank_score": "",
+      "ruanke_rank": "9999",
+      "ruanke_level": "",
+      "is_video": 2,
+      "special_name": "计算机科学与技术（大类招生）",
+      "special_type": "1",
+      "type_name": "本科(普通)",
+      "level3_name": "计算机类",
+      "level3_code": "71",
+      "level2_name": "工学",
+      "level2_id": "10",
+      "level2_code": "08",
+      "code": "0809"
+    }
+  ]
+}

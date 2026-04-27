@@ -1,0 +1,172 @@
+{
+  "update_time": "2026-04-27 16:45:18",
+  "school_id": "3390",
+  "school_name": "广西蓝天航空职业学院",
+  "source_url": "https://static-data.gaokao.cn/www/2.0/school/3390/pc_special.json?a=www.gaokao.cn",
+  "time": "2026-04-22 17:46:22",
+  "md5": "792e239fee3fc6ceb824f6d26d23c15e",
+  "group_keys": [
+    "2"
+  ],
+  "group_count": 1,
+  "nonempty_group_count": 1,
+  "data_count": 1,
+  "special_detail_keys": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "special_group_count": 1,
+  "nation_feature_count": 0,
+  "educational_strength": {
+    "num_doctor": "0",
+    "num_doctor2": "0",
+    "num_master": "0",
+    "num_master2": "0",
+    "num_subject": "0",
+    "gbh_num": "0",
+    "a_subject": "0",
+    "dualclass": 0,
+    "nation_feature": 0
+  },
+  "data": {
+    "1": "",
+    "2": [
+      {
+        "id": "1472745",
+        "school_id": "3390",
+        "special_id": "9132",
+        "nation_feature": "2",
+        "province_feature": "2",
+        "is_important": "2",
+        "limit_year": "三年",
+        "year": "2022",
+        "level3_weight": "0",
+        "nation_first_class": "2",
+        "xueke_rank": "0",
+        "xueke_rank_score": "",
+        "ruanke_rank": "9999",
+        "ruanke_level": "",
+        "is_video": 2,
+        "special_name": "体能训练",
+        "special_type": "2",
+        "type_name": "专科(高职)",
+        "level3_name": "体育类",
+        "level3_code": "214",
+        "level2_name": "教育与体育大类",
+        "level2_id": "31",
+        "level2_code": "57",
+        "code": "5703"
+      }
+    ],
+    "special_detail": {
+      "1": [],
+      "2": [
+        {
+          "id": "1472745",
+          "school_id": "3390",
+          "special_id": "9132",
+          "nation_feature": "2",
+          "province_feature": "2",
+          "is_important": "2",
+          "limit_year": "三年",
+          "year": "2022",
+          "level3_weight": "0",
+          "nation_first_class": "2",
+          "xueke_rank": "0",
+          "xueke_rank_score": "",
+          "ruanke_rank": "9999",
+          "ruanke_level": "",
+          "is_video": 2,
+          "special_name": "体能训练",
+          "special_type": "2",
+          "type_name": "专科(高职)",
+          "level3_name": "体育类",
+          "level3_code": "214",
+          "level2_name": "教育与体育大类",
+          "level2_id": "31",
+          "level2_code": "57",
+          "code": "5703"
+        }
+      ],
+      "3": "",
+      "4": []
+    },
+    "special": [
+      {
+        "level3_weight": "0",
+        "code": "5703",
+        "name": "体育类(专)",
+        "special": [
+          {
+            "id": "1472745",
+            "school_id": "3390",
+            "special_id": "9132",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "三年",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "体能训练",
+            "special_type": "2",
+            "type_name": "专科(高职)",
+            "level3_name": "体育类",
+            "level3_code": "214",
+            "level2_name": "教育与体育大类",
+            "level2_id": "31",
+            "level2_code": "57",
+            "code": "5703"
+          }
+        ]
+      }
+    ],
+    "nation_feature": [],
+    "educational_strength": {
+      "num_doctor": "0",
+      "num_doctor2": "0",
+      "num_master": "0",
+      "num_master2": "0",
+      "num_subject": "0",
+      "gbh_num": "0",
+      "a_subject": "0",
+      "dualclass": 0,
+      "nation_feature": 0
+    }
+  },
+  "items": [
+    {
+      "id": "1472745",
+      "school_id": "3390",
+      "special_id": "9132",
+      "nation_feature": "2",
+      "province_feature": "2",
+      "is_important": "2",
+      "limit_year": "三年",
+      "year": "2022",
+      "level3_weight": "0",
+      "nation_first_class": "2",
+      "xueke_rank": "0",
+      "xueke_rank_score": "",
+      "ruanke_rank": "9999",
+      "ruanke_level": "",
+      "is_video": 2,
+      "special_name": "体能训练",
+      "special_type": "2",
+      "type_name": "专科(高职)",
+      "level3_name": "体育类",
+      "level3_code": "214",
+      "level2_name": "教育与体育大类",
+      "level2_id": "31",
+      "level2_code": "57",
+      "code": "5703"
+    }
+  ]
+}

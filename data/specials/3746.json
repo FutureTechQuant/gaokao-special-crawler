@@ -1,0 +1,172 @@
+{
+  "update_time": "2026-04-27 16:48:53",
+  "school_id": "3746",
+  "school_name": "福建福耀科技大学",
+  "source_url": "https://static-data.gaokao.cn/www/2.0/school/3746/pc_special.json?a=www.gaokao.cn",
+  "time": "2026-04-28 00:01:09",
+  "md5": "8b07732e3b74fee76d48f0fb1632647f",
+  "group_keys": [
+    "1"
+  ],
+  "group_count": 1,
+  "nonempty_group_count": 1,
+  "data_count": 1,
+  "special_detail_keys": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "special_group_count": 1,
+  "nation_feature_count": 0,
+  "educational_strength": {
+    "num_doctor": "0",
+    "num_doctor2": "0",
+    "num_master": "0",
+    "num_master2": "0",
+    "num_subject": "0",
+    "gbh_num": "0",
+    "a_subject": "0",
+    "dualclass": 0,
+    "nation_feature": 0
+  },
+  "data": {
+    "1": [
+      {
+        "id": "2167835",
+        "school_id": "3746",
+        "special_id": "8379",
+        "nation_feature": "2",
+        "province_feature": "2",
+        "is_important": "2",
+        "limit_year": "",
+        "year": "2022",
+        "level3_weight": "0",
+        "nation_first_class": "2",
+        "xueke_rank": "0",
+        "xueke_rank_score": "",
+        "ruanke_rank": "9999",
+        "ruanke_level": "",
+        "is_video": 2,
+        "special_name": "智能制造工程",
+        "special_type": "1",
+        "type_name": "本科(普通)",
+        "level3_name": "机械类",
+        "level3_code": "64",
+        "level2_name": "工学",
+        "level2_id": "10",
+        "level2_code": "08",
+        "code": "0802"
+      }
+    ],
+    "2": "",
+    "special_detail": {
+      "1": [
+        {
+          "id": "2167835",
+          "school_id": "3746",
+          "special_id": "8379",
+          "nation_feature": "2",
+          "province_feature": "2",
+          "is_important": "2",
+          "limit_year": "",
+          "year": "2022",
+          "level3_weight": "0",
+          "nation_first_class": "2",
+          "xueke_rank": "0",
+          "xueke_rank_score": "",
+          "ruanke_rank": "9999",
+          "ruanke_level": "",
+          "is_video": 2,
+          "special_name": "智能制造工程",
+          "special_type": "1",
+          "type_name": "本科(普通)",
+          "level3_name": "机械类",
+          "level3_code": "64",
+          "level2_name": "工学",
+          "level2_id": "10",
+          "level2_code": "08",
+          "code": "0802"
+        }
+      ],
+      "2": [],
+      "3": "",
+      "4": []
+    },
+    "special": [
+      {
+        "level3_weight": "0",
+        "code": "0802",
+        "name": "机械类(本)",
+        "special": [
+          {
+            "id": "2167835",
+            "school_id": "3746",
+            "special_id": "8379",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "智能制造工程",
+            "special_type": "1",
+            "type_name": "本科(普通)",
+            "level3_name": "机械类",
+            "level3_code": "64",
+            "level2_name": "工学",
+            "level2_id": "10",
+            "level2_code": "08",
+            "code": "0802"
+          }
+        ]
+      }
+    ],
+    "nation_feature": [],
+    "educational_strength": {
+      "num_doctor": "0",
+      "num_doctor2": "0",
+      "num_master": "0",
+      "num_master2": "0",
+      "num_subject": "0",
+      "gbh_num": "0",
+      "a_subject": "0",
+      "dualclass": 0,
+      "nation_feature": 0
+    }
+  },
+  "items": [
+    {
+      "id": "2167835",
+      "school_id": "3746",
+      "special_id": "8379",
+      "nation_feature": "2",
+      "province_feature": "2",
+      "is_important": "2",
+      "limit_year": "",
+      "year": "2022",
+      "level3_weight": "0",
+      "nation_first_class": "2",
+      "xueke_rank": "0",
+      "xueke_rank_score": "",
+      "ruanke_rank": "9999",
+      "ruanke_level": "",
+      "is_video": 2,
+      "special_name": "智能制造工程",
+      "special_type": "1",
+      "type_name": "本科(普通)",
+      "level3_name": "机械类",
+      "level3_code": "64",
+      "level2_name": "工学",
+      "level2_id": "10",
+      "level2_code": "08",
+      "code": "0802"
+    }
+  ]
+}

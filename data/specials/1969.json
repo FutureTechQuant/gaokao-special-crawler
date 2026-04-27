@@ -1,0 +1,172 @@
+{
+  "update_time": "2026-04-27 16:33:02",
+  "school_id": "1969",
+  "school_name": "湖北汽车工业学院科技学院",
+  "source_url": "https://static-data.gaokao.cn/www/2.0/school/1969/pc_special.json?a=www.gaokao.cn",
+  "time": "2026-04-26 03:08:53",
+  "md5": "27717a38afd5d57339acd3808c85947e",
+  "group_keys": [
+    "1"
+  ],
+  "group_count": 1,
+  "nonempty_group_count": 1,
+  "data_count": 1,
+  "special_detail_keys": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "special_group_count": 1,
+  "nation_feature_count": 0,
+  "educational_strength": {
+    "num_doctor": "0",
+    "num_doctor2": "0",
+    "num_master": "0",
+    "num_master2": "0",
+    "num_subject": "0",
+    "gbh_num": "0",
+    "a_subject": "0",
+    "dualclass": 0,
+    "nation_feature": 0
+  },
+  "data": {
+    "1": [
+      {
+        "id": "67661",
+        "school_id": "1969",
+        "special_id": "348",
+        "nation_feature": "2",
+        "province_feature": "2",
+        "is_important": "2",
+        "limit_year": "四年",
+        "year": "2022",
+        "level3_weight": "0",
+        "nation_first_class": "2",
+        "xueke_rank": "0",
+        "xueke_rank_score": "",
+        "ruanke_rank": "9999",
+        "ruanke_level": "",
+        "is_video": 2,
+        "special_name": "产品设计",
+        "special_type": "1",
+        "type_name": "本科(普通)",
+        "level3_name": "设计学类",
+        "level3_code": "125",
+        "level2_name": "艺术学",
+        "level2_id": "14",
+        "level2_code": "13",
+        "code": "1305"
+      }
+    ],
+    "2": "",
+    "special_detail": {
+      "1": [
+        {
+          "id": "67661",
+          "school_id": "1969",
+          "special_id": "348",
+          "nation_feature": "2",
+          "province_feature": "2",
+          "is_important": "2",
+          "limit_year": "四年",
+          "year": "2022",
+          "level3_weight": "0",
+          "nation_first_class": "2",
+          "xueke_rank": "0",
+          "xueke_rank_score": "",
+          "ruanke_rank": "9999",
+          "ruanke_level": "",
+          "is_video": 2,
+          "special_name": "产品设计",
+          "special_type": "1",
+          "type_name": "本科(普通)",
+          "level3_name": "设计学类",
+          "level3_code": "125",
+          "level2_name": "艺术学",
+          "level2_id": "14",
+          "level2_code": "13",
+          "code": "1305"
+        }
+      ],
+      "2": [],
+      "3": "",
+      "4": []
+    },
+    "special": [
+      {
+        "level3_weight": "0",
+        "code": "1305",
+        "name": "设计学类(本)",
+        "special": [
+          {
+            "id": "67661",
+            "school_id": "1969",
+            "special_id": "348",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "四年",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "产品设计",
+            "special_type": "1",
+            "type_name": "本科(普通)",
+            "level3_name": "设计学类",
+            "level3_code": "125",
+            "level2_name": "艺术学",
+            "level2_id": "14",
+            "level2_code": "13",
+            "code": "1305"
+          }
+        ]
+      }
+    ],
+    "nation_feature": [],
+    "educational_strength": {
+      "num_doctor": "0",
+      "num_doctor2": "0",
+      "num_master": "0",
+      "num_master2": "0",
+      "num_subject": "0",
+      "gbh_num": "0",
+      "a_subject": "0",
+      "dualclass": 0,
+      "nation_feature": 0
+    }
+  },
+  "items": [
+    {
+      "id": "67661",
+      "school_id": "1969",
+      "special_id": "348",
+      "nation_feature": "2",
+      "province_feature": "2",
+      "is_important": "2",
+      "limit_year": "四年",
+      "year": "2022",
+      "level3_weight": "0",
+      "nation_first_class": "2",
+      "xueke_rank": "0",
+      "xueke_rank_score": "",
+      "ruanke_rank": "9999",
+      "ruanke_level": "",
+      "is_video": 2,
+      "special_name": "产品设计",
+      "special_type": "1",
+      "type_name": "本科(普通)",
+      "level3_name": "设计学类",
+      "level3_code": "125",
+      "level2_name": "艺术学",
+      "level2_id": "14",
+      "level2_code": "13",
+      "code": "1305"
+    }
+  ]
+}

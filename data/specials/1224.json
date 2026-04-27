@@ -1,0 +1,49 @@
+{
+  "update_time": "2026-04-27 16:25:45",
+  "school_id": "1224",
+  "school_name": "中国人民解放军西安通信学院",
+  "source_url": "https://static-data.gaokao.cn/www/2.0/school/1224/pc_special.json?a=www.gaokao.cn",
+  "time": "2026-04-22 17:25:35",
+  "md5": "0108a2395377c39655e05b6f0defbeb3",
+  "group_keys": [],
+  "group_count": 0,
+  "nonempty_group_count": 0,
+  "data_count": 0,
+  "special_detail_keys": [
+    "3",
+    "4"
+  ],
+  "special_group_count": 0,
+  "nation_feature_count": 0,
+  "educational_strength": {
+    "num_doctor": "0",
+    "num_doctor2": "0",
+    "num_master": "4",
+    "num_master2": "0",
+    "num_subject": "0",
+    "gbh_num": "0",
+    "a_subject": "0",
+    "dualclass": 0,
+    "nation_feature": 0
+  },
+  "data": {
+    "special_detail": {
+      "3": "",
+      "4": []
+    },
+    "special": "",
+    "nation_feature": [],
+    "educational_strength": {
+      "num_doctor": "0",
+      "num_doctor2": "0",
+      "num_master": "4",
+      "num_master2": "0",
+      "num_subject": "0",
+      "gbh_num": "0",
+      "a_subject": "0",
+      "dualclass": 0,
+      "nation_feature": 0
+    }
+  },
+  "items": []
+}
