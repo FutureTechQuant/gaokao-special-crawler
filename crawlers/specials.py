@@ -67,8 +67,7 @@ class SpecialCrawler(BaseCrawler):
             sid = x['school_id']
             return (0, int(sid)) if sid.isdigit() else (1, sid)
 
-        items = sorted({item['school_id']: item for item in items}.values(), key=sort_key)
-        return items
+        return sorted({item['school_id']: item for item in items}.values(), key=sort_key)
 
     def get_progress_file(self):
         custom = os.getenv('SPECIAL_PROGRESS_FILE', '').strip()
@@ -124,28 +123,67 @@ class SpecialCrawler(BaseCrawler):
             if response.status_code == 200:
                 result = response.json()
                 if result.get('code') == '0000' and 'data' in result:
-                    return result['data']
+                    return result
             elif response.status_code == 404:
                 return 'no_data'
         except Exception as e:
             print(f'      ⚠️  获取专业数据失败 (ID:{school_id}): {str(e)}')
         return None
 
-    def normalize_school_payload(self, school, data):
+    def extract_grouped_lists(self, data):
+        grouped = {}
+        if not isinstance(data, dict):
+            return grouped
+        for key, value in data.items():
+            if str(key).isdigit() and isinstance(value, list):
+                grouped[str(key)] = value
+        return grouped
+
+    def flatten_grouped_lists(self, grouped):
+        items = []
+        for key in sorted(grouped.keys(), key=lambda x: int(x) if str(x).isdigit() else str(x)):
+            value = grouped[key]
+            if isinstance(value, list):
+                items.extend(value)
+        return items
+
+    def count_nonempty_numeric_groups(self, grouped):
+        count = 0
+        for value in grouped.values():
+            if isinstance(value, list) and value:
+                count += 1
+        return count
+
+    def normalize_school_payload(self, school, result):
         school_id = str(school.get('school_id'))
         school_name = school.get('school_name') or ''
-        main_list = data.get('data') or [] if isinstance(data, dict) else []
-        detail_list = data.get('specialdetail') or [] if isinstance(data, dict) else []
-        class_list = data.get('class') or [] if isinstance(data, dict) else []
+        data = result.get('data') or {}
+
+        grouped = self.extract_grouped_lists(data)
+        items = self.flatten_grouped_lists(grouped)
+
+        special_detail = data.get('special_detail') if isinstance(data, dict) else None
+        special = data.get('special') if isinstance(data, dict) else None
+        nation_feature = data.get('nation_feature') if isinstance(data, dict) else None
+        educational_strength = data.get('educational_strength') if isinstance(data, dict) else None
+
         return {
             'update_time': self.now_str(),
             'school_id': school_id,
             'school_name': school_name,
             'source_url': f'https://static-data.gaokao.cn/www/2.0/school/{school_id}/pc_special.json?a=www.gaokao.cn',
-            'data_count': len(main_list) if isinstance(main_list, list) else 0,
-            'specialdetail_count': len(detail_list) if isinstance(detail_list, list) else 0,
-            'class_count': len(class_list) if isinstance(class_list, list) else 0,
+            'time': result.get('time'),
+            'md5': result.get('md5'),
+            'group_keys': sorted(grouped.keys(), key=lambda x: int(x) if str(x).isdigit() else str(x)),
+            'group_count': len(grouped),
+            'nonempty_group_count': self.count_nonempty_numeric_groups(grouped),
+            'data_count': len(items),
+            'special_detail_keys': sorted(list(special_detail.keys()), key=lambda x: int(x) if str(x).isdigit() else str(x)) if isinstance(special_detail, dict) else [],
+            'special_group_count': len(special) if isinstance(special, list) else 0,
+            'nation_feature_count': len(nation_feature) if isinstance(nation_feature, list) else 0,
+            'educational_strength': educational_strength if isinstance(educational_strength, dict) else {},
             'data': data,
+            'items': items,
         }
 
     def save_school_payload(self, payload):
@@ -199,30 +237,37 @@ class SpecialCrawler(BaseCrawler):
             school_name = school.get('school_name') or '未知学校'
             print(f'[{school_index + 1}/{len(schools)}] 学校ID: {school_id}', end='', flush=True)
 
-            data = self.get_special_payload(school_id)
-            if not data or data == 'no_data' or not isinstance(data, dict):
+            result = self.get_special_payload(school_id)
+            if not result or result == 'no_data' or not isinstance(result, dict):
                 print(f' ✗ {school_name} - 无专业数据')
                 self.polite_sleep(0.2, 0.6)
                 continue
 
-            if not self._first_logged:
-                main_list = data.get('data') or []
-                detail_list = data.get('specialdetail') or []
-                class_list = data.get('class') or []
-                print(f'   📡 [专业接口] school_id={school_id}')
-                print(f'      URL: https://static-data.gaokao.cn/www/2.0/school/{school_id}/pc_special.json?a=www.gaokao.cn')
-                print(f"      data包含键: {list(data.keys())}")
-                print(f"      data数量: {len(main_list) if isinstance(main_list, list) else 0}")
-                print(f"      specialdetail数量: {len(detail_list) if isinstance(detail_list, list) else 0}")
-                print(f"      class数量: {len(class_list) if isinstance(class_list, list) else 0}")
-                if isinstance(main_list, list) and main_list:
-                    sample = main_list[0]
-                    if isinstance(sample, dict):
-                        print(f"      样例字段: {list(sample.keys())}")
+            data = result.get('data') or {}
+            grouped = self.extract_grouped_lists(data)
+            items = self.flatten_grouped_lists(grouped)
+            special_detail = data.get('special_detail') if isinstance(data, dict) else None
+            special = data.get('special') if isinstance(data, dict) else None
+            nation_feature = data.get('nation_feature') if isinstance(data, dict) else None
+            educational_strength = data.get('educational_strength') if isinstance(data, dict) else None
 
+            if not self._first_logged:
+                sample = items[0] if items and isinstance(items[0], dict) else {}
+                print(f'\n\n   📡 [专业接口] school_id={school_id}')
+                print(f'      URL: https://static-data.gaokao.cn/www/2.0/school/{school_id}/pc_special.json?a=www.gaokao.cn')
+                print('      ' + '─' * 50)
+                print(f"      data包含键: {list(data.keys()) if isinstance(data, dict) else []}")
+                print(f"      分组键: {sorted(grouped.keys(), key=lambda x: int(x) if str(x).isdigit() else str(x))}")
+                print(f"      data数量: {len(items)}")
+                print(f"      special_detail键: {sorted(list(special_detail.keys()), key=lambda x: int(x) if str(x).isdigit() else str(x)) if isinstance(special_detail, dict) else []}")
+                print(f"      special分组数: {len(special) if isinstance(special, list) else 0}")
+                print(f"      nation_feature数量: {len(nation_feature) if isinstance(nation_feature, list) else 0}")
+                print(f"      educational_strength键: {list(educational_strength.keys()) if isinstance(educational_strength, dict) else []}")
+                print(f"      样例字段: {list(sample.keys()) if isinstance(sample, dict) else []}")
+                print('      ' + '─' * 50 + '\n')
                 self._first_logged = True
 
-            payload = self.normalize_school_payload(school, data)
+            payload = self.normalize_school_payload(school, result)
             self.save_school_payload(payload)
             saved_count += 1
 
@@ -235,7 +280,7 @@ class SpecialCrawler(BaseCrawler):
                     last_error=None,
                     status='running',
                 )
-                print(f'   ↻ 已阶段性保存：学校进度 {school_index + 1}/{len(schools)}，已写入 {saved_count} 个文件')
+                print(f'\n   ↻ 已阶段性保存：学校进度 {school_index + 1}/{len(schools)}，已写入 {saved_count} 个文件\n')
 
             self.polite_sleep(0.2, 0.6)
 
