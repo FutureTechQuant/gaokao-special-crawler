@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:13:06",
+  "update_time": "2026-05-01 07:30:32",
   "school_id": "47",
   "school_name": "北京航空航天大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/47/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 03:08:26",
-  "md5": "cf3ec75b4f81abe6674900f1114e1cd6",
+  "time": "2026-05-01 03:08:44",
+  "md5": "a24798e313a1e4bad3aa121e375c48c3",
   "group_keys": [
     "1"
   ],
@@ -1615,12 +1615,12 @@
           "special_name": "低空技术与工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "2153466",
@@ -3254,8 +3254,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2161592",
@@ -3276,12 +3276,12 @@
             "special_name": "低空技术与工程",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

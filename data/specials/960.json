@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:23:11",
+  "update_time": "2026-05-01 07:40:17",
   "school_id": "960",
   "school_name": "南方医科大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/960/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 02:03:31",
-  "md5": "b7cc97cd20af5b20a1b168ee2835f520",
+  "time": "2026-05-01 02:03:19",
+  "md5": "1b34f2645e2d5cb6e102e2438bcec775",
   "group_keys": [
     "1"
   ],
@@ -17,7 +17,7 @@
     "3",
     "4"
   ],
-  "special_group_count": 18,
+  "special_group_count": 19,
   "nation_feature_count": 14,
   "educational_strength": {
     "num_doctor": "11",
@@ -1043,12 +1043,12 @@
           "special_name": "智能医学工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "医学技术类",
-          "level3_code": "110",
-          "level2_name": "医学",
-          "level2_id": "12",
-          "level2_code": "10",
-          "code": "1010"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "2170002",
@@ -2649,32 +2649,6 @@
             "code": "1010"
           },
           {
-            "id": "2164349",
-            "school_id": "960",
-            "special_id": "8425",
-            "nation_feature": "2",
-            "province_feature": "2",
-            "is_important": "2",
-            "limit_year": "四年",
-            "year": "2022",
-            "level3_weight": "0",
-            "nation_first_class": "2",
-            "xueke_rank": "0",
-            "xueke_rank_score": "",
-            "ruanke_rank": "9999",
-            "ruanke_level": "",
-            "is_video": 2,
-            "special_name": "智能医学工程",
-            "special_type": "1",
-            "type_name": "本科(普通)",
-            "level3_name": "医学技术类",
-            "level3_code": "110",
-            "level2_name": "医学",
-            "level2_id": "12",
-            "level2_code": "10",
-            "code": "1010"
-          },
-          {
             "id": "2170008",
             "school_id": "960",
             "special_id": "288",
@@ -2843,6 +2817,39 @@
             "level2_id": "13",
             "level2_code": "12",
             "code": "1204"
+          }
+        ]
+      },
+      {
+        "level3_weight": "0",
+        "code": "1400",
+        "name": "交叉学科(本)",
+        "special": [
+          {
+            "id": "2164349",
+            "school_id": "960",
+            "special_id": "8425",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "四年",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "智能医学工程",
+            "special_type": "1",
+            "type_name": "本科(普通)",
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

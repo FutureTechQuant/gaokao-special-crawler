@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:16:25",
+  "update_time": "2026-05-01 07:34:03",
   "school_id": "342",
   "school_name": "昆明理工大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/342/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-28 00:03:57",
-  "md5": "d240a725f1fd01dad1b809b4240fe110",
+  "time": "2026-05-01 02:03:59",
+  "md5": "1f30b0290adad1a5edf755a8d27c83f9",
   "group_keys": [
     "1"
   ],
@@ -2733,12 +2733,12 @@
           "special_name": "碳中和科学与工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         }
       ],
       "2": [],
@@ -5358,8 +5358,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2161620",
@@ -5380,12 +5380,12 @@
             "special_name": "碳中和科学与工程",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

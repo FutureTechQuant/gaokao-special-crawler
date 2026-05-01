@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:13:47",
+  "update_time": "2026-05-01 07:31:31",
   "school_id": "107",
   "school_name": "西北工业大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/107/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 03:08:56",
-  "md5": "202db6295becc41d7cffdb62651af601",
+  "time": "2026-05-01 02:04:19",
+  "md5": "f75cb571ae04b23e28527101772764cd",
   "group_keys": [
     "1"
   ],
@@ -1719,12 +1719,12 @@
           "special_name": "低空技术与工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "94144",
@@ -3602,8 +3602,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2161595",
@@ -3624,12 +3624,12 @@
             "special_name": "低空技术与工程",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

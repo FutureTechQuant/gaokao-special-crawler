@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:26:10",
+  "update_time": "2026-05-01 07:43:01",
   "school_id": "1268",
   "school_name": "凯里学院",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/1268/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 02:03:15",
-  "md5": "78975ed98762179d3d42eca56dbff463",
+  "time": "2026-05-01 02:03:02",
+  "md5": "2cc43703a544bec85b2b4eb0a0e43312",
   "group_keys": [
     "1"
   ],
@@ -1225,12 +1225,12 @@
           "special_name": "未来机器人",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "1801549",
@@ -3253,8 +3253,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2164518",
@@ -3275,12 +3275,12 @@
             "special_name": "未来机器人",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

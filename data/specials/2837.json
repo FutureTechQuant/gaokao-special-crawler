@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:41:08",
+  "update_time": "2026-05-01 07:57:14",
   "school_id": "2837",
   "school_name": "山东协和学院",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/2837/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-28 00:01:46",
-  "md5": "34ea5592bf30d3e2d1ca6b5a88cde4c2",
+  "time": "2026-05-01 02:01:48",
+  "md5": "20951a9c536b5b9630244da0248ead09",
   "group_keys": [
     "1",
     "2"
@@ -18,7 +18,7 @@
     "3",
     "4"
   ],
-  "special_group_count": 35,
+  "special_group_count": 36,
   "nation_feature_count": 0,
   "educational_strength": {
     "num_doctor": "0",
@@ -1721,12 +1721,12 @@
           "special_name": "智能影像工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "医学技术类",
-          "level3_code": "110",
-          "level2_name": "医学",
-          "level2_id": "12",
-          "level2_code": "10",
-          "code": "1010"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "169902",
@@ -3227,32 +3227,6 @@
             "level2_id": "12",
             "level2_code": "10",
             "code": "1010"
-          },
-          {
-            "id": "2154129",
-            "school_id": "2837",
-            "special_id": "8822",
-            "nation_feature": "2",
-            "province_feature": "2",
-            "is_important": "2",
-            "limit_year": "四年",
-            "year": "2022",
-            "level3_weight": "0",
-            "nation_first_class": "2",
-            "xueke_rank": "0",
-            "xueke_rank_score": "",
-            "ruanke_rank": "9999",
-            "ruanke_level": "",
-            "is_video": 2,
-            "special_name": "智能影像工程",
-            "special_type": "1",
-            "type_name": "本科(普通)",
-            "level3_name": "医学技术类",
-            "level3_code": "110",
-            "level2_name": "医学",
-            "level2_id": "12",
-            "level2_code": "10",
-            "code": "1010"
           }
         ]
       },
@@ -3673,6 +3647,39 @@
             "level2_id": "14",
             "level2_code": "13",
             "code": "1305"
+          }
+        ]
+      },
+      {
+        "level3_weight": "0",
+        "code": "1400",
+        "name": "交叉学科(本)",
+        "special": [
+          {
+            "id": "2154129",
+            "school_id": "2837",
+            "special_id": "8822",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "四年",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "智能影像工程",
+            "special_type": "1",
+            "type_name": "本科(普通)",
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       },

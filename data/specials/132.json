@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:14:04",
+  "update_time": "2026-05-01 07:31:48",
   "school_id": "132",
   "school_name": "复旦大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/132/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 03:08:24",
-  "md5": "d7a12120babcd76179a5f6b70044bc82",
+  "time": "2026-05-01 03:08:42",
+  "md5": "c937317f624966bea60221a3d9d8a41c",
   "group_keys": [
     "1"
   ],
@@ -2057,12 +2057,12 @@
           "special_name": "集成电路科学与工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "95963",
@@ -4197,8 +4197,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2161584",
@@ -4219,12 +4219,12 @@
             "special_name": "集成电路科学与工程",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

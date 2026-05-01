@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:17:39",
+  "update_time": "2026-05-01 07:35:09",
   "school_id": "441",
   "school_name": "黑龙江中医药大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/441/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 02:04:04",
-  "md5": "29a770019e5ed4b3fb46c22e7ceffb85",
+  "time": "2026-05-01 02:03:51",
+  "md5": "2608b5f82b0039a0d860886402a89ba3",
   "group_keys": [
     "1"
   ],
@@ -17,7 +17,7 @@
     "3",
     "4"
   ],
-  "special_group_count": 12,
+  "special_group_count": 13,
   "nation_feature_count": 4,
   "educational_strength": {
     "num_doctor": "4",
@@ -415,12 +415,12 @@
         "special_name": "智能医学工程",
         "special_type": "1",
         "type_name": "本科(普通)",
-        "level3_name": "医学技术类",
-        "level3_code": "110",
-        "level2_name": "医学",
-        "level2_id": "12",
-        "level2_code": "10",
-        "code": "1010"
+        "level3_name": "交叉学科",
+        "level3_code": "346",
+        "level2_name": "交叉学科",
+        "level2_id": "345",
+        "level2_code": "14",
+        "code": "1400"
       }
     ],
     "2": "",
@@ -809,12 +809,12 @@
           "special_name": "智能医学工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "医学技术类",
-          "level3_code": "110",
-          "level2_name": "医学",
-          "level2_id": "12",
-          "level2_code": "10",
-          "code": "1010"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "2161601",
@@ -1612,32 +1612,6 @@
             "code": "1010"
           },
           {
-            "id": "1800634",
-            "school_id": "441",
-            "special_id": "8425",
-            "nation_feature": "2",
-            "province_feature": "2",
-            "is_important": "2",
-            "limit_year": "四年",
-            "year": "2022",
-            "level3_weight": "0",
-            "nation_first_class": "2",
-            "xueke_rank": "0",
-            "xueke_rank_score": "",
-            "ruanke_rank": "9999",
-            "ruanke_level": "",
-            "is_video": 2,
-            "special_name": "智能医学工程",
-            "special_type": "1",
-            "type_name": "本科(普通)",
-            "level3_name": "医学技术类",
-            "level3_code": "110",
-            "level2_name": "医学",
-            "level2_id": "12",
-            "level2_code": "10",
-            "code": "1010"
-          },
-          {
             "id": "2161601",
             "school_id": "441",
             "special_id": "10130",
@@ -1813,6 +1787,39 @@
             "level2_id": "13",
             "level2_code": "12",
             "code": "1204"
+          }
+        ]
+      },
+      {
+        "level3_weight": "0",
+        "code": "1400",
+        "name": "交叉学科(本)",
+        "special": [
+          {
+            "id": "1800634",
+            "school_id": "441",
+            "special_id": "8425",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "四年",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "智能医学工程",
+            "special_type": "1",
+            "type_name": "本科(普通)",
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }
@@ -2323,12 +2330,12 @@
       "special_name": "智能医学工程",
       "special_type": "1",
       "type_name": "本科(普通)",
-      "level3_name": "医学技术类",
-      "level3_code": "110",
-      "level2_name": "医学",
-      "level2_id": "12",
-      "level2_code": "10",
-      "code": "1010"
+      "level3_name": "交叉学科",
+      "level3_code": "346",
+      "level2_name": "交叉学科",
+      "level2_id": "345",
+      "level2_code": "14",
+      "code": "1400"
     }
   ]
 }

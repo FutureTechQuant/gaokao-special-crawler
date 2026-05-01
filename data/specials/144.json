@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:14:11",
+  "update_time": "2026-05-01 07:31:55",
   "school_id": "144",
   "school_name": "北京科技大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/144/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-28 00:04:14",
-  "md5": "60bb434d5be5efeed16ec3e07f8d174a",
+  "time": "2026-05-01 03:08:41",
+  "md5": "f52cf5a903bb5c84a0f664cbc88d53bd",
   "group_keys": [
     "1"
   ],
@@ -1641,12 +1641,12 @@
           "special_name": "碳中和科学与工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "1497769",
@@ -3277,8 +3277,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2161574",
@@ -3299,12 +3299,12 @@
             "special_name": "碳中和科学与工程",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

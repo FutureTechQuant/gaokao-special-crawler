@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:13:02",
+  "update_time": "2026-05-01 07:30:29",
   "school_id": "42",
   "school_name": "武汉大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/42/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 03:08:26",
-  "md5": "fbc83393a66c59fe10d9a8c9b8da8299",
+  "time": "2026-05-01 03:08:44",
+  "md5": "61bffe5fbcef11afb48855b9c4343121",
   "group_keys": [
     "1"
   ],
@@ -3071,12 +3071,12 @@
           "special_name": "智慧城市与空间规划",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "97212",
@@ -6355,8 +6355,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2161589",
@@ -6377,12 +6377,12 @@
             "special_name": "智慧城市与空间规划",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       },

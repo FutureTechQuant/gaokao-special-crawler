@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:15:15",
+  "update_time": "2026-05-01 07:32:57",
   "school_id": "241",
   "school_name": "浙江师范大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/241/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 03:08:21",
-  "md5": "5f4e8ecf9fb42e8c180aa97a9a0e707b",
+  "time": "2026-05-01 03:08:28",
+  "md5": "24ea0334de97cb01fc8ec5deefa7c890",
   "group_keys": [
     "1"
   ],
@@ -1485,12 +1485,12 @@
           "special_name": "智能医学工程",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "医学技术类",
-          "level3_code": "110",
-          "level2_name": "医学",
-          "level2_id": "12",
-          "level2_code": "10",
-          "code": "1010"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "622439",
@@ -3235,39 +3235,6 @@
       },
       {
         "level3_weight": "0",
-        "code": "1010",
-        "name": "医学技术类(本)",
-        "special": [
-          {
-            "id": "2153828",
-            "school_id": "241",
-            "special_id": "8425",
-            "nation_feature": "2",
-            "province_feature": "2",
-            "is_important": "2",
-            "limit_year": "四年",
-            "year": "2022",
-            "level3_weight": "0",
-            "nation_first_class": "2",
-            "xueke_rank": "0",
-            "xueke_rank_score": "",
-            "ruanke_rank": "9999",
-            "ruanke_level": "",
-            "is_video": 2,
-            "special_name": "智能医学工程",
-            "special_type": "1",
-            "type_name": "本科(普通)",
-            "level3_name": "医学技术类",
-            "level3_code": "110",
-            "level2_name": "医学",
-            "level2_id": "12",
-            "level2_code": "10",
-            "code": "1010"
-          }
-        ]
-      },
-      {
-        "level3_weight": "0",
         "code": "1202",
         "name": "工商管理类(本)",
         "special": [
@@ -3735,6 +3702,39 @@
             "level2_id": "14",
             "level2_code": "13",
             "code": "1305"
+          }
+        ]
+      },
+      {
+        "level3_weight": "0",
+        "code": "1400",
+        "name": "交叉学科(本)",
+        "special": [
+          {
+            "id": "2153828",
+            "school_id": "241",
+            "special_id": "8425",
+            "nation_feature": "2",
+            "province_feature": "2",
+            "is_important": "2",
+            "limit_year": "四年",
+            "year": "2022",
+            "level3_weight": "0",
+            "nation_first_class": "2",
+            "xueke_rank": "0",
+            "xueke_rank_score": "",
+            "ruanke_rank": "9999",
+            "ruanke_level": "",
+            "is_video": 2,
+            "special_name": "智能医学工程",
+            "special_type": "1",
+            "type_name": "本科(普通)",
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }

@@ -1,10 +1,10 @@
 {
-  "update_time": "2026-04-27 16:14:08",
+  "update_time": "2026-05-01 07:31:51",
   "school_id": "138",
   "school_name": "大连理工大学",
   "source_url": "https://static-data.gaokao.cn/www/2.0/school/138/pc_special.json?a=www.gaokao.cn",
-  "time": "2026-04-27 02:04:29",
-  "md5": "967f3c9deb8d76374dc98027ea8b4242",
+  "time": "2026-05-01 02:04:16",
+  "md5": "c4177da057ee797286c2adda7d4a50cb",
   "group_keys": [
     "1"
   ],
@@ -1147,12 +1147,12 @@
           "special_name": "未来机器人",
           "special_type": "1",
           "type_name": "本科(普通)",
-          "level3_name": "交叉工程类",
-          "level3_code": "341",
-          "level2_name": "工学",
-          "level2_id": "10",
-          "level2_code": "08",
-          "code": "1306"
+          "level3_name": "交叉学科",
+          "level3_code": "346",
+          "level2_name": "交叉学科",
+          "level2_id": "345",
+          "level2_code": "14",
+          "code": "1400"
         },
         {
           "id": "2163224",
@@ -3805,8 +3805,8 @@
       },
       {
         "level3_weight": "0",
-        "code": "1306",
-        "name": "交叉工程类(本)",
+        "code": "1400",
+        "name": "交叉学科(本)",
         "special": [
           {
             "id": "2163223",
@@ -3827,12 +3827,12 @@
             "special_name": "未来机器人",
             "special_type": "1",
             "type_name": "本科(普通)",
-            "level3_name": "交叉工程类",
-            "level3_code": "341",
-            "level2_name": "工学",
-            "level2_id": "10",
-            "level2_code": "08",
-            "code": "1306"
+            "level3_name": "交叉学科",
+            "level3_code": "346",
+            "level2_name": "交叉学科",
+            "level2_id": "345",
+            "level2_code": "14",
+            "code": "1400"
           }
         ]
       }
